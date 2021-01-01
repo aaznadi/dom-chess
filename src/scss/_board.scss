@@ -1,0 +1,12 @@
+.board {
+  height: $board-height;
+  width: $board-width;
+  display: flex;
+  flex-wrap: wrap;
+  padding: $board-padding;
+  border-radius: 10px;
+  background-color: $board-color;
+  box-shadow: 0 1px 10px 0px #18181880;
+  margin: 0;
+  box-sizing: border-box;
+}

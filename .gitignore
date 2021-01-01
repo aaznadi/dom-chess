@@ -1,0 +1,8 @@
+node_modules/
+
+dist/*
+!dist/index.html
+
+.DS_Store
+
+ideas/

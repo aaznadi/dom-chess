@@ -1,0 +1,28 @@
+.square {
+  height: $square-height;
+  width: $square-width;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  &-black {
+    background-color: $black-square-color;
+    &:hover {
+      background-color: lighten($black-square-color, 5%);
+    }
+  }
+
+  &-white {
+    background-color: $white-square-color;
+    &:hover {
+      background-color: lighten($white-square-color, 5%);
+    }
+  }
+  &-clicked {
+    border: solid 3px rgb(144, 255, 80);
+  }
+}
