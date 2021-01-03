@@ -10,11 +10,11 @@ DOM Chess takes advantage of the DOM API to implement the game of chess. The boa
 
 - Non-strict mode: No rules. Any move is legal 🤡
 
-## Usage (coming soon)
+## Usage
 
-Download `dom-chess`. Unzip to get the `dom-chess.js` file.
+Download the [latest release](https://github.com/kuka0len/dom-chess/releases/latest). Unzip to get the `dom-chess.js` file.
 
-In your `HTML` file, add the following div where you want the game to be rendered:
+In your `HTML` file, add the following line where you want the game to be rendered:
 
 ```html
 <div id="dom-chess"></div>
@@ -26,18 +26,12 @@ Then, add this line at the bottom of the `HTML`'s body:
 <script src="/path/to/dom-chess.js"></script>
 ```
 
-Or, if you don't want to download the js file, add this instead:
-
-```html
-<script src="https://blahblah.blah/path/to/dom-chess.js"></script>
-```
-
 ## Development
 
 Clone the repository:
 
 ```shell
-git clone https://github.com/aaznadi/dom-chess.git
+git clone https://github.com/kuka0len/dom-chess.git
 ```
 
 Install the dependencies:
@@ -68,7 +62,7 @@ npm run dev-server
 
 Issues and requests are very welcome. I will add them to the To Do list and will do my best to fix/implement them.
 
-Click [here](https://github.com/aaznadi/dom-chess/issues/new) to file an issue.
+Click [here](https://github.com/kuka0len/dom-chess/issues/new) to file an issue.
 
 ## Contribute
 
