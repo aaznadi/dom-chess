@@ -8,27 +8,31 @@ export default function handleClickOnSquare() {
   // maybe use event target instead
   const targetSquareId = this.getAttribute("id");
   const targetSquare = document.getElementById(targetSquareId);
-  targetSquare.classList.toggle("square-clicked");
 
+  /*
+    ISSUE #1
+    cases:
+      - origin is null
+        - target is empty -> do nothing
+        - target holds a piece -> origin = target
+      - origin is not null
+        - target is empty -> move
+        - target holds a piece -> capture
+  */
   if (originSquareId === null) {
-    // first click
-    originSquareId = targetSquareId;
-  } else if (originSquareId === targetSquareId) {
-    // two clicks on the same square
-    originSquareId = null;
-  } else if (isEmptySquare(originSquareId)) {
-    // origin is an empty square
-    originSquareId = null;
-    targetSquare.classList.toggle("square-clicked");
+    if (!isEmptySquare(targetSquareId)) {
+      //origin = target
+      originSquareId = targetSquareId;
+      targetSquare.classList.toggle("square-clicked");
+    }
   } else {
-    // origin and target neither empty nor the same
+    // move/capture
     const originSquare = document.getElementById(originSquareId);
-    targetSquare.classList.toggle("square-clicked");
-    originSquare.classList.toggle("square-clicked");
     const pieceNode = originSquare.firstElementChild;
     targetSquare.innerHTML = "";
     targetSquare.appendChild(pieceNode);
     originSquare.innerHTML = "";
     originSquareId = null;
+    originSquare.classList.toggle("square-clicked");
   }
 }
