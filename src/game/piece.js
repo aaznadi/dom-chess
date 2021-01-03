@@ -37,7 +37,5 @@ export default class Piece {
   get img() {
     return nameToSrc.get(this.color + " " + this.type);
   }
-  get id() {
-    return this.color + "-" + this.type;
-  }
+  // id removed due to issue #2
 }
