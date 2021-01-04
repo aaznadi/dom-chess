@@ -20,7 +20,7 @@ In your `HTML` file, add the following line where you want the game to be render
 <div id="dom-chess"></div>
 ```
 
-Then, add this line at the bottom of the `HTML`'s body:
+And add this line at the bottom of the `HTML`'s body:
 
 ```html
 <script src="/path/to/dom-chess.js"></script>
@@ -88,11 +88,11 @@ The list is in no special order.
 
 - [x] Print board in initial position
 
-- [ ] Square highlighting
+- [x] Square highlighting
 
 - [ ] Animate pieces on move by click
 
-- [ ] Responsible board for small screens
+- [ ] Responsive board for small screens
 
 - [ ] Add sound for: move, capture, check, game end
 
