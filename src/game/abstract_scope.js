@@ -10,7 +10,7 @@ const increaseRankBy = (rank, i) => String(Number(rank) + i);
 
 const isLegal = (file, rank) => FILES.includes(file) && RANKS.includes(rank);
 
-function getRookAbstractScope(coordinates) {
+export function getRookAbstractScope(coordinates) {
   const scope = [];
   const [file0, rank0] = coordinates;
   for (let rank of RANKS) {
@@ -26,7 +26,7 @@ function getRookAbstractScope(coordinates) {
   return scope;
 }
 
-function getBishopAbstractScope(coordinates) {
+export function getBishopAbstractScope(coordinates) {
   const scope = [];
   const [file0, rank0] = coordinates;
   let file, rank;
@@ -44,11 +44,11 @@ function getBishopAbstractScope(coordinates) {
   return scope;
 }
 
-function getQueenAbstractScope(coordinates) {
+export function getQueenAbstractScope(coordinates) {
   return scopeRook(coordinates).concat(scopeBishop(coordinates));
 }
 
-function getKingAbstractScope(coordinates) {
+export function getKingAbstractScope(coordinates) {
   const scope = [];
   const [file0, rank0] = coordinates;
   let file, rank;
@@ -66,7 +66,7 @@ function getKingAbstractScope(coordinates) {
   return scope;
 }
 
-function getKnightAbstractScope(coordinates) {
+export function getKnightAbstractScope(coordinates) {
   const scope = [];
   const [file0, rank0] = coordinates;
   let file, rank;
@@ -84,7 +84,7 @@ function getKnightAbstractScope(coordinates) {
   return scope;
 }
 
-function getWhitePawnAbstractScope(coordinates) {
+export function getWhitePawnAbstractScope(coordinates) {
   const scope = [];
   const [file0, rank0] = coordinates;
   let file, rank;
@@ -103,7 +103,7 @@ function getWhitePawnAbstractScope(coordinates) {
   return scope;
 }
 
-function getBlackPawnAbstractScope(coordinates) {
+export function getBlackPawnAbstractScope(coordinates) {
   const scope = [];
   const [file0, rank0] = coordinates;
   let file, rank;

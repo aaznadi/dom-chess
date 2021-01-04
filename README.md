@@ -58,6 +58,12 @@ Run Webpack's development server (at `http://localhost:9000/`):
 npm run dev-server
 ```
 
+Run tests:
+
+```shell
+npm run test
+```
+
 ## Issues and requests
 
 Issues and requests are very welcome. I will add them to the To Do list and will do my best to fix/implement them.
