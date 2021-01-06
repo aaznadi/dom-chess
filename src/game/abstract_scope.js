@@ -10,34 +10,54 @@ const increaseRankBy = (rank, i) => String(Number(rank) + i);
 
 const isLegal = (file, rank) => FILES.includes(file) && RANKS.includes(rank);
 
+// rook start
 export function getRookAbstractScope(coordinates) {
   const scope = [];
   const [file0, rank0] = coordinates;
-  for (let rank of RANKS) {
-    if (rank !== rank0) {
-      scope.push(file0 + rank);
+  let file, rank;
+  let scopeLine = [];
+  for (let i of [1, -1]) {
+    file = increaseFileBy(file0, i);
+    while (isLegal(file, rank0)) {
+      scopeLine.push(file + rank0);
+      file = increaseFileBy(file, i);
     }
-  }
-  for (let file of FILES) {
-    if (file !== file0) {
-      scope.push(file + rank0);
+    if (scopeLine.length !== 0) {
+      scope.push(scopeLine);
+      scopeLine = [];
+    }
+
+    rank = increaseRankBy(rank0, i);
+    while (isLegal(file0, rank)) {
+      scopeLine.push(file0 + rank);
+      rank = increaseRankBy(rank, i);
+    }
+    if (scopeLine.length !== 0) {
+      scope.push(scopeLine);
+      scopeLine = [];
     }
   }
   return scope;
 }
+// rook end
 
 export function getBishopAbstractScope(coordinates) {
   const scope = [];
   const [file0, rank0] = coordinates;
   let file, rank;
+  let scopeLine = [];
   for (let i of [-1, 1]) {
     for (let j of [-1, 1]) {
       file = increaseFileBy(file0, i);
       rank = increaseRankBy(rank0, j);
       while (isLegal(file, rank)) {
-        scope.push(file + rank);
+        scopeLine.push(file + rank);
         file = increaseFileBy(file, i);
         rank = increaseRankBy(rank, j);
+      }
+      if (scopeLine.length !== 0) {
+        scope.push(scopeLine);
+        scopeLine = [];
       }
     }
   }
@@ -45,21 +65,28 @@ export function getBishopAbstractScope(coordinates) {
 }
 
 export function getQueenAbstractScope(coordinates) {
-  return scopeRook(coordinates).concat(scopeBishop(coordinates));
+  return getRookAbstractScope(coordinates).concat(
+    getBishopAbstractScope(coordinates)
+  );
 }
 
 export function getKingAbstractScope(coordinates) {
   const scope = [];
   const [file0, rank0] = coordinates;
   let file, rank;
+  let scopeLine = [];
   for (let i of [-1, 0, 1]) {
     for (let j of [-1, 0, 1]) {
       if (i !== 0 || j !== 0) {
         file = increaseFileBy(file0, i);
         rank = increaseRankBy(rank0, j);
         if (isLegal(file, rank)) {
-          scope.push(file + rank);
+          scopeLine.push(file + rank);
         }
+      }
+      if (scopeLine.length !== 0) {
+        scope.push(scopeLine);
+        scopeLine = [];
       }
     }
   }
@@ -70,14 +97,19 @@ export function getKnightAbstractScope(coordinates) {
   const scope = [];
   const [file0, rank0] = coordinates;
   let file, rank;
+  let scopeLine = [];
   for (let i of [-2, -1, 1, 2]) {
     for (let j of [-2, -1, 1, 2]) {
       if (Math.abs(i) !== Math.abs(j)) {
         file = increaseFileBy(file0, i);
         rank = increaseRankBy(rank0, j);
         if (isLegal(file, rank)) {
-          scope.push(file + rank);
+          scopeLine.push(file + rank);
         }
+      }
+      if (scopeLine.length !== 0) {
+        scope.push(scopeLine);
+        scopeLine = [];
       }
     }
   }
@@ -88,6 +120,7 @@ export function getWhitePawnAbstractScope(coordinates) {
   const scope = [];
   const [file0, rank0] = coordinates;
   let file, rank;
+  let scopeLine = [];
   for (let i of [1, 2]) {
     for (let j of [-1, 0, 1]) {
       if (i === 2 && j !== 0) {
@@ -96,7 +129,11 @@ export function getWhitePawnAbstractScope(coordinates) {
       file = increaseFileBy(file0, j);
       rank = increaseRankBy(rank0, i);
       if (isLegal(file, rank)) {
-        scope.push(file + rank);
+        scopeLine.push(file + rank);
+      }
+      if (scopeLine.length !== 0) {
+        scope.push(scopeLine);
+        scopeLine = [];
       }
     }
   }
@@ -107,6 +144,7 @@ export function getBlackPawnAbstractScope(coordinates) {
   const scope = [];
   const [file0, rank0] = coordinates;
   let file, rank;
+  let scopeLine = [];
   for (let i of [1, 2]) {
     for (let j of [-1, 0, 1]) {
       if (i === 2 && j !== 0) {
@@ -115,7 +153,11 @@ export function getBlackPawnAbstractScope(coordinates) {
       file = increaseFileBy(file0, j);
       rank = increaseRankBy(rank0, -i);
       if (isLegal(file, rank)) {
-        scope.push(file + rank);
+        scopeLine.push(file + rank);
+      }
+      if (scopeLine.length !== 0) {
+        scope.push(scopeLine);
+        scopeLine = [];
       }
     }
   }
