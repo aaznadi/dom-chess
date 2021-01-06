@@ -10,8 +10,18 @@ const increaseRankBy = (rank, i) => String(Number(rank) + i);
 
 const isLegal = (file, rank) => FILES.includes(file) && RANKS.includes(rank);
 
-// rook start
+const isValidCoordinates = (coordinates) => {
+  return (
+    coordinates.length === 2 &&
+    FILES.includes(coordinates[0]) &&
+    RANKS.includes(coordinates[1])
+  );
+};
+
 export function getRookAbstractScope(coordinates) {
+  if (!isValidCoordinates(coordinates)) {
+    throw new Error("Invalid coordinates");
+  }
   const scope = [];
   const [file0, rank0] = coordinates;
   let file, rank;
@@ -39,9 +49,11 @@ export function getRookAbstractScope(coordinates) {
   }
   return scope;
 }
-// rook end
 
 export function getBishopAbstractScope(coordinates) {
+  if (!isValidCoordinates(coordinates)) {
+    throw new Error("Invalid coordinates");
+  }
   const scope = [];
   const [file0, rank0] = coordinates;
   let file, rank;
@@ -71,6 +83,9 @@ export function getQueenAbstractScope(coordinates) {
 }
 
 export function getKingAbstractScope(coordinates) {
+  if (!isValidCoordinates(coordinates)) {
+    throw new Error("Invalid coordinates");
+  }
   const scope = [];
   const [file0, rank0] = coordinates;
   let file, rank;
@@ -94,6 +109,9 @@ export function getKingAbstractScope(coordinates) {
 }
 
 export function getKnightAbstractScope(coordinates) {
+  if (!isValidCoordinates(coordinates)) {
+    throw new Error("Invalid coordinates");
+  }
   const scope = [];
   const [file0, rank0] = coordinates;
   let file, rank;
@@ -117,6 +135,9 @@ export function getKnightAbstractScope(coordinates) {
 }
 
 export function getWhitePawnAbstractScope(coordinates) {
+  if (!isValidCoordinates(coordinates)) {
+    throw new Error("Invalid coordinates");
+  }
   const scope = [];
   const [file0, rank0] = coordinates;
   let file, rank;
@@ -141,6 +162,9 @@ export function getWhitePawnAbstractScope(coordinates) {
 }
 
 export function getBlackPawnAbstractScope(coordinates) {
+  if (!isValidCoordinates(coordinates)) {
+    throw new Error("Invalid coordinates");
+  }
   const scope = [];
   const [file0, rank0] = coordinates;
   let file, rank;
