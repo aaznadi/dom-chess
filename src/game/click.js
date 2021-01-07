@@ -1,33 +1,36 @@
 let originSquareId = null;
 
-const isNotEmpty = (square) => square.hasChildNodes();
-
-export default function handleClickOnSquare() {
-  // maybe use event target instead
-  const targetSquareId = this.getAttribute("id");
-  const targetSquare = document.getElementById(targetSquareId);
-
+export default function handleClickOnSquare(event, board) {
+  console.log(event.target);
+  const targetSquare = event.target;
+  const targetCoordinates = targetSquare.getAttribute("id");
+  const targetPiece = board.getPieceAt(targetCoordinates);
   if (originSquareId === null) {
     // first click
-    if (isNotEmpty(targetSquare)) {
-      originSquareId = targetSquareId;
+    if (targetPiece === null) {
+      originSquareId = targetCoordinates;
       targetSquare.classList.toggle("square-clicked");
     }
   } else {
     // second click
-    if (originSquareId === targetSquareId) {
+    if (originSquareId === targetCoordinates) {
       // second click on same square
       targetSquare.classList.toggle("square-clicked");
       originSquareId = null;
     } else {
       // second click on different square
+      const originPiece = board.getPieceAt(originSquareId);
+
+      originPiece.remove();
+      targetPiece.moveTo(targetCoordinates);
+
+      // un-highlight origin square and set it back to null
       const originSquare = document.getElementById(originSquareId);
-      const piece = originSquare.firstElementChild;
-      targetSquare.innerHTML = "";
-      targetSquare.appendChild(piece);
-      originSquare.innerHTML = "";
-      originSquareId = null;
       originSquare.classList.toggle("square-clicked");
+      originSquareId = null;
+
+      //TO DO
+      // remove the piece in target square (capture)
     }
   }
 }

@@ -3,7 +3,8 @@ $square-height: $square-width;
 $board-padding: 10px;
 $board-width: 8 * $square-width + 2 * $board-padding;
 $board-height: $board-width;
-$piece-width: 0.9 * $square-width;
+// $piece-width: 0.9 * $square-width;
+$piece-width: $square-width;
 $piece-height: $piece-width;
 
 $board-color: rgb(121, 60, 25);

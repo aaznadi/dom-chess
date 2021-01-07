@@ -1,4 +1,5 @@
 import "./scss/main.scss";
-import printBoard from "./game/render";
+import Board from "./game/board";
 
-printBoard();
+const board = new Board();
+board.render();
